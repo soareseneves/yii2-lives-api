@@ -16,10 +16,10 @@ class AuthService
 		$this->module = \Yii::$app->getModule('youtubeapi');
 		$this->client = new \Google_Client;
 
-		$this->client->setClientId($this->module->client_id);
-        $this->client->setClientSecret($this->module->client_secret);
-        $this->client->setDeveloperKey($this->module->api_key);
-        $this->client->setRedirectUri($this->module->redirect_url);
+		$this->client->setClientId($this->module->params['client_id']);
+        $this->client->setClientSecret($this->module->params['client_secret']);
+        $this->client->setDeveloperKey($this->module->params['api_key']);
+        $this->client->setRedirectUri($this->module->params['redirect_url']);
 
 		$this->client->setScopes([
 		                             'https://www.googleapis.com/auth/youtube',
