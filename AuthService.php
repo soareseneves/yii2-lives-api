@@ -91,7 +91,7 @@ class AuthService
 			Yii::info(json_encode($e->getMessage()));
 
 			throw new ServerErrorHttpException($e->getMessage());
-		} catch ( Exception $e ) {
+		} catch ( \Exception $e ) {
 
 			Yii::info('--------- GOOGLE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));

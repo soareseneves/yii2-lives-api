@@ -5,6 +5,7 @@ namespace soareseneves\youtubeapi;
 use Yii;
 use yii\base\InvalidParamException;
 use Carbon\Carbon;
+use yii\web\ServerErrorHttpException;
 
 class Module extends \yii\base\Module
 {
@@ -71,15 +72,15 @@ class Module extends \yii\base\Module
 
         } catch ( \Google_Service_Exception $e ) {
             
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
 
         } catch ( \Google_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         }
     }
 
@@ -234,16 +235,16 @@ class Module extends \yii\base\Module
 
         } catch ( \Google_Service_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
 
         } catch ( \Google_Exception $e ) {
 
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         }
 
     }
@@ -312,7 +313,7 @@ class Module extends \yii\base\Module
 
             } catch( \Google_Exception $e ) {
 
-                throw new Exception($e->getMessage(), 1);
+                throw new ServerErrorHttpException($e->getMessage(), 1);
             }
         }
     }
@@ -351,7 +352,7 @@ class Module extends \yii\base\Module
                 $updateResponse = $youtube->videos->update("snippet", $video);
 
             } catch( \Google_Exception $e ){
-                throw new Exception($e->getMessage(), 1);
+                throw new ServerErrorHttpException($e->getMessage(), 1);
             }
         }
     }
@@ -393,9 +394,9 @@ class Module extends \yii\base\Module
 
             throw new Exception($e->getMessage(), 1);
 
-        } catch(Exception $e){
+        } catch(\Exception $e){
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         }
     }
 
@@ -562,15 +563,15 @@ class Module extends \yii\base\Module
 
         } catch ( \Google_Service_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
 
         } catch ( \Google_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         }
 
     }
@@ -601,15 +602,15 @@ class Module extends \yii\base\Module
                 
         } catch ( \Google_Service_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
 
         } catch ( \Google_Exception $e ) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         
-        } catch(Exception $e) {
+        } catch(\Exception $e) {
 
-            throw new Exception($e->getMessage(), 1);
+            throw new ServerErrorHttpException($e->getMessage(), 1);
         }
     }
 
