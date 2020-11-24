@@ -1,13 +1,13 @@
 <?php
 
-namespace soareseneves\YoutubeApi;
+namespace soareseneves\youtubeapi;
 
 use yii\web\AssetBundle;
 
 /**
  * Class YoutubeApiAsset
  *
- * @package soareseneves\YoutubeApi
+ * @package soareseneves\youtubeapi
  */
 class YoutubeApiAsset extends AssetBundle
 {

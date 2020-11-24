@@ -1,5 +1,5 @@
 <?php 
-namespace soareseneves\YoutubeApi;
+namespace soareseneves\youtubeapi;
 
 use Yii;
 
