@@ -20,11 +20,11 @@
     },
     "autoload": {
         "psr-4": {
-            "soareseneves\\youtubeapi\\": ""
+            "soareseneves\\YoutubeApi\\": ""
         }
     },
     "extra": {
-        "bootstrap": "soareseneves\\youtubeapi\\Bootstrap"
+        "bootstrap": "soareseneves\\YoutubeApi\\Bootstrap"
     },
     "repositories": [
         {
