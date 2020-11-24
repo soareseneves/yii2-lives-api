@@ -1,0 +1,35 @@
+{
+    "name": "soareseneves/yii2-youtube-api",
+    "description": "Youtube API module for Yii2",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "yii2-youtube",
+        "yii2-youtube-module"
+    ],
+    "authors": [
+        {
+            "name": "Douglas soareseneves",
+            "email": "douglas.srs12@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.6",
+        "yiisoft/yii2": "~2.0.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "soareseneves\\youtubeapi\\": ""
+        }
+    },
+    "extra": {
+        "bootstrap": "soareseneves\\youtubeapi\\Bootstrap"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
