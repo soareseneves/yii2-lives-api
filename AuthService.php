@@ -2,6 +2,7 @@
 namespace soareseneves\youtubeapi;
 
 use Yii;
+use yii\web\ServerErrorHttpException;
 
 /**
 *  Api Service For Auth
@@ -45,18 +46,18 @@ class AuthService
 			Yii::info('start calculating average revenue');
 			Yii::info('--------- GOOGLE SERVICE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 
 		} catch ( \Google_Exception $e ) {
 
 			Yii::info('--------- GOOGLE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 		} catch ( \Exception $e ) {
 
 			Yii::info('--------- GOOGLE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 		} 
 	}
 
@@ -82,20 +83,20 @@ class AuthService
 			Yii::info('--------- GOOGLE SERVICE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
 
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 
 		} catch ( \Google_Exception $e ) {
 
 			Yii::info('--------- GOOGLE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
 
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 		} catch ( Exception $e ) {
 
 			Yii::info('--------- GOOGLE EXCEPTION ------------');
 			Yii::info(json_encode($e->getMessage()));
 
-			throw yii\web\ServerErrorHttpException($e->getMessage());
+			throw new ServerErrorHttpException($e->getMessage());
 		} 
 		
 	}
