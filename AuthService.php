@@ -42,18 +42,21 @@ class AuthService
 			return $token;
 
 		} catch ( \Google_Service_Exception $e ) {
-
-			Log::info('--------- GOOGLE SERVICE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('start calculating average revenue');
+			Yii::info('--------- GOOGLE SERVICE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 
 		} catch ( \Google_Exception $e ) {
 
-			Log::info('--------- GOOGLE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('--------- GOOGLE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 		} catch ( \Exception $e ) {
 
-			Log::info('--------- GOOGLE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('--------- GOOGLE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 		} 
 	}
 
@@ -76,17 +79,23 @@ class AuthService
 
 		} catch ( \Google_Service_Exception $e ) {
 
-			Log::info('--------- GOOGLE SERVICE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('--------- GOOGLE SERVICE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 
 		} catch ( \Google_Exception $e ) {
 
-			Log::info('--------- GOOGLE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('--------- GOOGLE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 		} catch ( Exception $e ) {
 
-			Log::info('--------- GOOGLE EXCEPTION ------------');
-			Log::info(json_encode($e->getMessage()));
+			Yii::info('--------- GOOGLE EXCEPTION ------------');
+			Yii::info(json_encode($e->getMessage()));
+
+			throw yii\web\ServerErrorHttpException($e->getMessage());
 		} 
 		
 	}
