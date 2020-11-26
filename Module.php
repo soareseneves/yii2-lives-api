@@ -95,7 +95,7 @@ class Module extends \yii\base\Module
         try{
             $response = [];
             if( count($data) < 1 || empty($data) || !isset($data['title']) || !isset($data['description']) ) {
-                Log::info('mandatory fields missing ind data');
+                Yii::info('mandatory fields missing ind data');
                 return false;
             }
 
@@ -229,8 +229,8 @@ class Module extends \yii\base\Module
 
             $response['bind_broadcast_response'] = $bindBroadcastResponse;
 
-            Log::info('------------ BIND BROADCAST RESPONSE -------------');
-            Log::info(json_encode($bindBroadcastResponse));
+            Yii::info('------------ BIND BROADCAST RESPONSE -------------');
+            Yii::info(json_encode($bindBroadcastResponse));
 
             return $response;
 
@@ -370,7 +370,7 @@ class Module extends \yii\base\Module
         try{
 
             if( empty($token) ){
-                Log::info("token can't be empty");
+                Yii::info("token can't be empty");
                 return false;
             }
 
@@ -424,7 +424,7 @@ class Module extends \yii\base\Module
             $youtube = new \Google_Service_YouTube($this->client);
             
             if(count($data)<1 || empty($data)) {
-                Log::info('request_data is empty');
+                Yii::info('request_data is empty');
                 return false;
             }
 
@@ -524,8 +524,8 @@ class Module extends \yii\base\Module
 
             $youtube_event_id = $updateResponse['id'];
 
-            Log::info('----------- Update BROADCAST RESPONSE ------------');
-            Log::info(json_encode($updateResponse));
+            Yii::info('----------- Update BROADCAST RESPONSE ------------');
+            Yii::info(json_encode($updateResponse));
 
             $this->googleYoutubeLiveStreamSnippet->setTitle($title);
 
