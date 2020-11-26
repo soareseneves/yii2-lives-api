@@ -196,7 +196,8 @@ class Module extends \yii\base\Module
             /**
              * object for content distribution  [stream's format,ingestion type.]
              */
-            $this->googleYoutubeCdnSettings->setFormat("720p");
+            $this->googleYoutubeCdnSettings->setResolution("variable");
+            $this->googleYoutubeCdnSettings->setFrameRate("variable");
             $this->googleYoutubeCdnSettings->setIngestionType('rtmp');
 
             /** 
