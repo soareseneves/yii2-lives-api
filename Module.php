@@ -114,6 +114,7 @@ class Module extends \yii\base\Module
 
             $title = $data["title"];
             $description = $data["description"];
+            $ingestionType = $data["ingestion_type"];
             $thumbnail_path = isset($data["thumbnail_path"]) ? $data["thumbnail_path"] : null;
             $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["event_start_date_time"], $data["time_zone"]);
             $startdt = ($startdt < Carbon::now($data["time_zone"])) ? Carbon::now($data["time_zone"]) : $startdt;
@@ -198,7 +199,7 @@ class Module extends \yii\base\Module
              */
             $this->googleYoutubeCdnSettings->setResolution("variable");
             $this->googleYoutubeCdnSettings->setFrameRate("variable");
-            $this->googleYoutubeCdnSettings->setIngestionType('rtmp');
+            $this->googleYoutubeCdnSettings->setIngestionType($ingestionType);
 
             /** 
              * API request [inserts liveStream resource.]
