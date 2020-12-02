@@ -148,7 +148,7 @@ class Module extends \yii\base\Module
              */
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
-            $this->googleYoutubeLiveBroadcast->setKind('youtube#liveBroadcast');
+            $this->googleYoutubeLiveBroadcast->setKind($data['kind']);
             $this->googleYoutubeLiveBroadcast->setMadeForKids(false);
 
             /**
