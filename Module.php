@@ -146,7 +146,7 @@ class Module extends \yii\base\Module
             $this->googleLiveBroadcastStatus->setPrivacyStatus($privacy_status);
             $this->googleLiveBroadcastStatus->setSelfDeclaredMadeForKids(false);
 
-            $this->googleLiveBroadcastContentDetails->setEnableEmbed(true);
+            //$this->googleLiveBroadcastContentDetails->setEnableEmbed(true);
             $this->googleLiveBroadcastContentDetails->setEnableAutoStart(true);
 
             /** 
