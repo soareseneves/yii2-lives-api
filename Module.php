@@ -142,7 +142,7 @@ class Module extends \yii\base\Module
              * object for the liveBroadcast resource's status ["private, public or unlisted"]
              */
             $this->googleLiveBroadcastStatus->setPrivacyStatus($privacy_status);
-            $this->googleLiveBroadcastStatus->setMadeForKids(false);
+            $this->googleLiveBroadcastStatus->setSelfDeclaredMadeForKids(false);
 
             /** 
              * API Request [inserts the liveBroadcast resource]
