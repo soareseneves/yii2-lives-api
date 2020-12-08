@@ -149,7 +149,7 @@ class Module extends \yii\base\Module
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
             $this->googleYoutubeLiveBroadcast->setKind($data['kind']);
-            //$this->googleYoutubeLiveBroadcast->setMadeForKids(false);
+            $this->googleYoutubeLiveBroadcast->setMadeForKids(false);
 
             /**
              * Execute Insert LiveBroadcast Resource Api [return an object that contains information about the new broadcast]
