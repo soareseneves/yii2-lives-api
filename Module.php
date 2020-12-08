@@ -160,7 +160,7 @@ class Module extends \yii\base\Module
             /**
              * Execute Insert LiveBroadcast Resource Api [return an object that contains information about the new broadcast]
              */
-            $broadcastsResponse = $youtube->liveBroadcasts->insert('snippet,status', $this->googleYoutubeLiveBroadcast, array());
+            $broadcastsResponse = $youtube->liveBroadcasts->insert('snippet,status,contentDetails', $this->googleYoutubeLiveBroadcast, array());
             $response['broadcast_response'] = $broadcastsResponse;
 
             $youtube_event_id = $broadcastsResponse['id'];
