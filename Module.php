@@ -26,6 +26,7 @@ class Module extends \yii\base\Module
     protected $googleYoutubeCdnSettings;
     protected $googleYoutubeLiveStream;
     protected $googleYoutubeVideoRecordingDetails;
+    protected $googleLiveBroadcastContentDetails;
 
     public function init(){
         parent::init();
@@ -48,6 +49,7 @@ class Module extends \yii\base\Module
         $this->googleYoutubeCdnSettings = new \Google_Service_YouTube_CdnSettings;
         $this->googleYoutubeLiveStream = new \Google_Service_YouTube_LiveStream;
         $this->googleYoutubeVideoRecordingDetails = new \Google_Service_YouTube_VideoRecordingDetails;
+        $this->googleLiveBroadcastContentDetails = new \Google_Service_YouTube_LiveBroadcastContentDetails;
     }
 
      /**
@@ -144,11 +146,15 @@ class Module extends \yii\base\Module
             $this->googleLiveBroadcastStatus->setPrivacyStatus($privacy_status);
             $this->googleLiveBroadcastStatus->setSelfDeclaredMadeForKids(false);
 
+            $this->googleLiveBroadcastContentDetails->setEnableEmbed(true);
+            $this->googleLiveBroadcastContentDetails->setEnableAutoStart(true);
+
             /** 
              * API Request [inserts the liveBroadcast resource]
              */
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
+            $this->googleYoutubeLiveBroadcast->setContentDetails($this->googleLiveBroadcastContentDetails);
             $this->googleYoutubeLiveBroadcast->setKind($data['kind']);
 
             /**
