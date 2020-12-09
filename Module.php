@@ -197,7 +197,7 @@ class Module extends \yii\base\Module
             $updateResponse = $youtube->videos->update("snippet", $video);
             $response['video_response'] = $updateResponse;
 
-            $listResponse = $youtube->videos->listVideos("status", array('id' => $youtube_event_id));
+            /*$listResponse = $youtube->videos->listVideos("status", array('id' => $youtube_event_id));
             $status = $listResponse[0];
 
             $videoStatus = $status['status'];
@@ -206,7 +206,7 @@ class Module extends \yii\base\Module
             $status['status'] = $videoStatus;
 
             $updateResponse = $youtube->videos->update("status", $status);
-            $response['video_response'] = $updateResponse;
+            $response['video_response'] = $updateResponse;*/
 
             /**
              * object of livestream resource [snippet][title]
