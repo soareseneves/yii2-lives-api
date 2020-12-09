@@ -15,7 +15,7 @@ class Module extends \yii\base\Module
     public $client_secret = '';
     public $api_key = '';
     public $redirect_url = '';
-    public $yt_language = 'pt_BR';
+    public $yt_language = 'pt-BR';
 
     protected $client;
     protected $youtube;
@@ -184,7 +184,7 @@ class Module extends \yii\base\Module
             $videoSnippet['tags'] = $data["tag_array"];
             $videoSnippet['categoryId'] = 29;
             if(!is_null($language)){
-                $temp = isset($this->yt_language[$language]) ? $this->yt_language[$language] : "pt_BR"; 
+                $temp = isset($this->yt_language[$language]) ? $this->yt_language[$language] : "pt-BR"; 
                 $videoSnippet['defaultAudioLanguage'] = $temp; 
                 $videoSnippet['defaultLanguage'] = $temp;  
             }
