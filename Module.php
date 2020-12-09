@@ -131,7 +131,7 @@ class Module extends \yii\base\Module
             }
 
             $privacy_status = isset($data['privacy_status']) ? $data['privacy_status'] : "public";
-            $language = isset($data["language_name"]) ? $data["language_name"]: 'English';
+            $language = isset($data["language_name"]) ? $data["language_name"]: 'Brazilian Portuguese';
 
             /** 
              * Create an object for the liveBroadcast resource [specify snippet's title, scheduled start time, and scheduled end time]
@@ -183,7 +183,6 @@ class Module extends \yii\base\Module
             $videoSnippet = $video['snippet'];
             $videoSnippet['tags'] = $data["tag_array"];
             $videoSnippet['categoryId'] = 29;
-            $videoSnippet['embeddable'] = true;
             if(!is_null($language)){
                 $temp = isset($this->yt_language[$language]) ? $this->yt_language[$language] : "en"; 
                 $videoSnippet['defaultAudioLanguage'] = $temp; 
@@ -196,6 +195,17 @@ class Module extends \yii\base\Module
              * Update video resource [videos.update() method.]
              */
             $updateResponse = $youtube->videos->update("snippet", $video);
+            $response['video_response'] = $updateResponse;
+
+            $listResponse = $youtube->videos->listVideos("status", array('id' => $youtube_event_id));
+            $status = $listResponse[0];
+
+            $videoStatus = $status['status'];
+            $videoStatus['embeddable'] = true;
+
+            $status['status'] = $videoStatus;
+
+            $updateResponse = $youtube->videos->update("status", $status);
             $response['video_response'] = $updateResponse;
 
             /**
