@@ -183,6 +183,7 @@ class Module extends \yii\base\Module
             $videoSnippet = $video['snippet'];
             $videoSnippet['tags'] = $data["tag_array"];
             $videoSnippet['categoryId'] = 29;
+            $videoSnippet['embeddable'] = true;
             if(!is_null($language)){
                 $temp = isset($this->yt_language[$language]) ? $this->yt_language[$language] : "en"; 
                 $videoSnippet['defaultAudioLanguage'] = $temp; 
