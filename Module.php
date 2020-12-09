@@ -182,6 +182,7 @@ class Module extends \yii\base\Module
              */
             $videoSnippet = $video['snippet'];
             $videoSnippet['tags'] = $data["tag_array"];
+            $videoSnippet['categoryId'] = 29;
             if(!is_null($language)){
                 $temp = isset($this->yt_language[$language]) ? $this->yt_language[$language] : "en"; 
                 $videoSnippet['defaultAudioLanguage'] = $temp; 
@@ -352,7 +353,7 @@ class Module extends \yii\base\Module
                 $video = $listResponse[0];
 
                 $videoSnippet = $video['snippet'];
-                $videoSnippet['tags'] = $data["tag_array"];             
+                $videoSnippet['tags'] = $data["tag_array"];            
                 $video['snippet'] = $videoSnippet;
 
                 /**
