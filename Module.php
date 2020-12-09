@@ -201,7 +201,7 @@ class Module extends \yii\base\Module
             $status = $listResponse[0];
 
             $videoStatus = $status['status'];
-            $videoStatus['embeddable'] = true;
+            $videoStatus['embeddable'] = 'true';
 
             $status['status'] = $videoStatus;
 
