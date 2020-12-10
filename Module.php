@@ -155,7 +155,7 @@ class Module extends \yii\base\Module
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
             $this->googleYoutubeLiveBroadcast->setContentDetails($this->googleLiveBroadcastContentDetails);
-            $this->googleYoutubeLiveBroadcast->setKind($data['kind']);
+            $this->googleYoutubeLiveBroadcast->setKind('youtube#liveBroadcast');
 
             /**
              * Execute Insert LiveBroadcast Resource Api [return an object that contains information about the new broadcast]
@@ -450,6 +450,7 @@ class Module extends \yii\base\Module
 
             $title = $data["title"];
             $description = $data['description'];
+            $ingestionType = $data["ingestion_type"];
             $thumbnail_path = isset($data['thumbnail_path']) ? $data['thumbnail_path'] : null;
             
             /**
@@ -489,19 +490,23 @@ class Module extends \yii\base\Module
              * Create an object for the liveBroadcast resource's status ["private, public or unlisted".]
              */
             $this->googleLiveBroadcastStatus->setPrivacyStatus($privacy_status);
+            $this->googleLiveBroadcastStatus->setSelfDeclaredMadeForKids(false);
+
+            $this->googleLiveBroadcastContentDetails->setEnableAutoStart(true);            
 
             /**
              * Create the API request  [inserts the liveBroadcast resource.]
              */
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
+            $this->googleYoutubeLiveBroadcast->setContentDetails($this->googleLiveBroadcastContentDetails);
             $this->googleYoutubeLiveBroadcast->setKind('youtube#liveBroadcast');
             $this->googleYoutubeLiveBroadcast->setId($youtube_event_id);
 
             /** 
              * Execute the request [return info about the new broadcast ]
              */
-            $broadcastsResponse = $youtube->liveBroadcasts->update('snippet,status',
+            $broadcastsResponse = $youtube->liveBroadcasts->update('snippet,status,contentDetails',
                 $this->googleYoutubeLiveBroadcast, array());
 
 
@@ -553,8 +558,9 @@ class Module extends \yii\base\Module
              * object for content distribution  [stream's format,ingestion type.]
              */
 
-            $this->googleYoutubeCdnSettings->setFormat("720p");
-            $this->googleYoutubeCdnSettings->setIngestionType('rtmp');
+            $this->googleYoutubeCdnSettings->setResolution("variable");
+            $this->googleYoutubeCdnSettings->setFrameRate("variable");
+            $this->googleYoutubeCdnSettings->setIngestionType($ingestionType);
 
             /** 
              * API request [inserts liveStream resource.]
