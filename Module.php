@@ -492,22 +492,21 @@ class Module extends \yii\base\Module
             $this->googleLiveBroadcastStatus->setPrivacyStatus($privacy_status);
             $this->googleLiveBroadcastStatus->setSelfDeclaredMadeForKids(false);
 
-            $this->googleLiveBroadcastContentDetails->setEnableEmbed(false);
-            $this->googleLiveBroadcastContentDetails->setEnableAutoStart(true);            
+            //$this->googleLiveBroadcastContentDetails->setEnableAutoStart(true);            
 
             /**
              * Create the API request  [inserts the liveBroadcast resource.]
              */
             $this->googleYoutubeLiveBroadcast->setSnippet($this->googleLiveBroadcastSnippet);
             $this->googleYoutubeLiveBroadcast->setStatus($this->googleLiveBroadcastStatus);
-            $this->googleYoutubeLiveBroadcast->setContentDetails($this->googleLiveBroadcastContentDetails);
+            //$this->googleYoutubeLiveBroadcast->setContentDetails($this->googleLiveBroadcastContentDetails);
             $this->googleYoutubeLiveBroadcast->setKind('youtube#liveBroadcast');
             $this->googleYoutubeLiveBroadcast->setId($youtube_event_id);
 
             /** 
              * Execute the request [return info about the new broadcast ]
              */
-            $broadcastsResponse = $youtube->liveBroadcasts->update('snippet,status,contentDetails',
+            $broadcastsResponse = $youtube->liveBroadcasts->update('snippet,status',
                 $this->googleYoutubeLiveBroadcast, array());
 
 
