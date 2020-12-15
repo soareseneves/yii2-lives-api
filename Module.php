@@ -37,7 +37,9 @@ class Module extends \yii\base\Module
         $this->client->setDeveloperKey($this->api_key);
         $this->client->setRedirectUri($this->redirect_url);
         $this->client->setScopes([
-                                     'https://www.googleapis.com/auth/youtube',
+                                    'https://www.googleapis.com/auth/youtube.readonly',
+                                    'https://www.googleapis.com/auth/youtube',
+                                    'https://www.googleapis.com/auth/youtube.force-ssl'
                                  ]);
         $this->client->setAccessType('offline');
         $this->client->setPrompt('consent');
