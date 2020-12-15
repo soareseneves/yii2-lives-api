@@ -23,7 +23,9 @@ class AuthService
         $this->client->setRedirectUri($this->module->redirect_url);
 
 		$this->client->setScopes([
-		                             'https://www.googleapis.com/auth/youtube',
+		                             'https://www.googleapis.com/auth/youtube.readonly',
+                                    'https://www.googleapis.com/auth/youtube',
+                                    'https://www.googleapis.com/auth/youtube.force-ssl'
 		                         ]);
 		$this->client->setAccessType('offline');
 		$this->client->setPrompt('consent');
