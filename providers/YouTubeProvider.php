@@ -7,29 +7,56 @@ use yii\base\InvalidParamException;
 use Carbon\Carbon;
 use yii\web\ServerErrorHttpException;
 
-class Facebook
+class YouTubeProvider
 {
 
-	public $app_id;
-    public $app_secret;
-    public $api_version;
+	public $app_name;
+    public $client_id;
+    public $client_secret;
+    public $api_key;
     public $redirect_url;
-    public $fb_language;
+    public $yt_language;
 
-    protected $facebookClient;
+    protected $googleClient;
+    protected $youtube;
+    protected $googleLiveBroadcastSnippet;
+    protected $googleLiveBroadcastStatus;
+    protected $googleYoutubeLiveBroadcast;
+    protected $googleYoutubeLiveStreamSnippet;
+    protected $googleYoutubeCdnSettings;
+    protected $googleYoutubeLiveStream;
+    protected $googleYoutubeVideoRecordingDetails;
+    protected $googleLiveBroadcastContentDetails;
 
     public function __construct($params){
-    	$this->app_id = $params['app_id'] ?: '';
-    	$this->app_secret = $params['app_secret'] ?: '';
-    	$this->api_version = $params['api_version'] ?: '';
+    	$this->app_name = $params['app_name'] ?: '';
+    	$this->client_id = $params['client_id'] ?: '';
+    	$this->client_secret = $params['client_secret'] ?: '';
+    	$this->api_key = $params['api_key'] ?: '';
     	$this->redirect_url = $params['redirect_url'] ?: '';
-    	$this->fb_language = $params['fb_language'] ?: 'pt_BR';
+    	$this->yt_language = $params['yt_language'] ?: 'pt-BR';
 
-        $this->facebookClient = new Facebook\Facebook([
-            'app_id' => $this->app_id,
-            'app_secret' => $this->app_secret,
-            'default_graph_version' => $this->api_version,
-        ]);
+        $this->googleClient = new \Google_Client;
+        $this->googleClient->setClientId($this->client_id);
+        $this->googleClient->setClientSecret($this->client_secret);
+        $this->googleClient->setDeveloperKey($this->api_key);
+        $this->googleClient->setRedirectUri($this->redirect_url);
+        $this->googleClient->setScopes([
+                                    'https://www.googleapis.com/auth/youtube.readonly',
+                                    'https://www.googleapis.com/auth/youtube',
+                                    'https://www.googleapis.com/auth/youtube.force-ssl'
+                                 ]);
+        $this->googleClient->setAccessType('offline');
+        $this->googleClient->setPrompt('consent');
+        
+        $this->googleLiveBroadcastSnippet = new \Google_Service_YouTube_LiveBroadcastSnippet;
+        $this->googleLiveBroadcastStatus = new \Google_Service_YouTube_LiveBroadcastStatus;
+        $this->googleYoutubeLiveBroadcast = new \Google_Service_YouTube_LiveBroadcast;
+        $this->googleYoutubeLiveStreamSnippet = new \Google_Service_YouTube_LiveStreamSnippet;
+        $this->googleYoutubeCdnSettings = new \Google_Service_YouTube_CdnSettings;
+        $this->googleYoutubeLiveStream = new \Google_Service_YouTube_LiveStream;
+        $this->googleYoutubeVideoRecordingDetails = new \Google_Service_YouTube_VideoRecordingDetails;
+        $this->googleLiveBroadcastContentDetails = new \Google_Service_YouTube_LiveBroadcastContentDetails;
     }
 
     /**

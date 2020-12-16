@@ -6,8 +6,8 @@ use Yii;
 use yii\base\InvalidParamException;
 use Carbon\Carbon;
 use yii\web\ServerErrorHttpException;
-use soareseneves\livesapi\providers\YouTube;
-use soareseneves\livesapi\providers\Facebook;
+use soareseneves\livesapi\providers\YouTubeProvider;
+use soareseneves\livesapi\providers\FacebookProvider;
 
 class Module extends \yii\base\Module
 {
