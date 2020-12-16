@@ -1,11 +1,11 @@
 {
-    "name": "soareseneves/yii2-youtube-api",
-    "description": "Youtube API module for Yii2",
+    "name": "soareseneves/yii2-lives-api",
+    "description": "Lives API module for Yii2",
     "type": "yii2-extension",
     "keywords": [
         "yii2",
-        "yii2-youtube",
-        "yii2-youtube-module"
+        "yii2-lives",
+        "yii2-lives-module"
     ],
     "authors": [
         {
@@ -20,11 +20,11 @@
     },
     "autoload": {
         "psr-4": {
-            "soareseneves\\youtubeapi\\": ""
+            "soareseneves\\livesapi\\": ""
         }
     },
     "extra": {
-        "bootstrap": "soareseneves\\youtubeapi\\Bootstrap"
+        "bootstrap": "soareseneves\\livesapi\\Bootstrap"
     },
     "repositories": [
         {

@@ -1,6 +1,6 @@
 <?php
 
-namespace soareseneves\youtubeapi;
+namespace soareseneves\livesapi;
 
 use yii\web\AssetBundle;
 
@@ -9,7 +9,7 @@ use yii\web\AssetBundle;
  *
  * @package soareseneves\youtubeapi
  */
-class YoutubeApiAsset extends AssetBundle
+class LivesApiAsset extends AssetBundle
 {
     /**
      * @inheritdoc
@@ -20,14 +20,14 @@ class YoutubeApiAsset extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'js/youtubeapi.js',
+        'js/lives-api.js',
     ];
 
     /**
      * @inheritdoc
      */
     public $css = [
-        'css/youtubeapi.css',
+        'css/lives-api.css',
     ];
 
     /**

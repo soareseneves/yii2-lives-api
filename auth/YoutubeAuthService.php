@@ -1,5 +1,5 @@
 <?php 
-namespace soareseneves\youtubeapi;
+namespace soareseneves\livesapi\auth;
 
 use Yii;
 use yii\web\ServerErrorHttpException;
@@ -7,28 +7,28 @@ use yii\web\ServerErrorHttpException;
 /**
 *  Api Service For Auth
 */
-class AuthService 
+class YoutubeAuthService 
 {	
-	protected $client;
+	protected $googleClient;
 	protected $module;
 
 	public function __construct()
 	{
-		$this->module = \Yii::$app->getModule('youtubeapi');
-		$this->client = new \Google_Client;
+		$this->module = \Yii::$app->getModule('livesapi');
+		$this->googleClient = new \Google_Client;
 
-		$this->client->setClientId($this->module->client_id);
-        $this->client->setClientSecret($this->module->client_secret);
-        $this->client->setDeveloperKey($this->module->api_key);
-        $this->client->setRedirectUri($this->module->redirect_url);
+		$this->googleClient->setClientId($this->module->youtube->client_id);
+        $this->googleClient->setClientSecret($this->module->youtube->client_secret);
+        $this->googleClient->setDeveloperKey($this->module->youtube->api_key);
+        $this->googleClient->setRedirectUri($this->module->youtube->redirect_url);
 
-		$this->client->setScopes([
+		$this->googleClient->setScopes([
 		                             'https://www.googleapis.com/auth/youtube.readonly',
                                     'https://www.googleapis.com/auth/youtube',
                                     'https://www.googleapis.com/auth/youtube.force-ssl'
 		                         ]);
-		$this->client->setAccessType('offline');
-		$this->client->setPrompt('consent');
+		$this->googleClient->setAccessType('offline');
+		$this->googleClient->setPrompt('consent');
 	}
 
 	/**	
@@ -40,8 +40,8 @@ class AuthService
 	{
 		try {
 			
-			$this->client->authenticate($code);
-			$token = $this->client->getAccessToken();
+			$this->googleClient->authenticate($code);
+			$token = $this->googleClient->getAccessToken();
 			return $token;
 
 		} catch ( \Google_Service_Exception $e ) {
@@ -74,10 +74,10 @@ class AuthService
 		try
 		{	
 			if(!empty($channelId))
-				$this->client->setState($channelId);
+				$this->googleClient->setState($channelId);
 
-			$this->client->setLoginHint($youtube_email);
-			$authUrl = $this->client->createAuthUrl();
+			$this->googleClient->setLoginHint($youtube_email);
+			$authUrl = $this->googleClient->createAuthUrl();
 			return $authUrl;
 
 		} catch ( \Google_Service_Exception $e ) {
