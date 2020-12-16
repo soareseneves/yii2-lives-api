@@ -16,7 +16,7 @@ class FacebookAuthService
 	public function __construct()
 	{
 		$this->module = \Yii::$app->getModule('livesapi');
-		$this->facebookClient = new Facebook\Facebook([
+		$this->facebookClient = new \Facebook\Facebook([
         	'app_id' => $this->module->facebook->app_id,
         	'app_secret' => $this->module->facebook->app_secret,
         	'default_graph_version' => $this->module->facebook->api_version,
