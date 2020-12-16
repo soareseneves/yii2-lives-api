@@ -20,11 +20,11 @@ class Module extends \yii\base\Module
         parent::init();
 
         if (isset($this->providers['youtube'])){
-            $this->youtube = new YouTube($this->providers['youtube']);
+            $this->youtube = new YouTubeProvider($this->providers['youtube']);
         }
 
         if (isset($this->providers['facebook'])){
-            $this->facebook = new Facebook($this->providers['facebook']);
+            $this->facebook = new FacebookProvider($this->providers['facebook']);
         }
     }
 
