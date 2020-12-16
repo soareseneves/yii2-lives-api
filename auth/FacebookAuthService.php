@@ -79,7 +79,7 @@ class FacebookAuthService
 				  //var_dump($accessToken->getValue());
 				}
 
-				return $accessToken;
+				return (string)$accessToken;
 			} catch(Facebook\Exception\ResponseException $e) {
 			  	// When Graph returns an error
 			  	Yii::info('--------- FACEBOOK EXCEPTION ------------');
