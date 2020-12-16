@@ -6,6 +6,7 @@ use Yii;
 use yii\base\InvalidParamException;
 use Carbon\Carbon;
 use yii\web\ServerErrorHttpException;
+use Facebook\Facebook;
 
 class FacebookProvider
 {
@@ -25,7 +26,7 @@ class FacebookProvider
     	$this->redirect_url = $params['redirect_url'] ?: '';
     	$this->fb_language = $params['fb_language'] ?: 'pt_BR';
 
-        $this->facebookClient = new Facebook\Facebook([
+        $this->facebookClient = new Facebook([
             'app_id' => $this->app_id,
             'app_secret' => $this->app_secret,
             'default_graph_version' => $this->api_version,
