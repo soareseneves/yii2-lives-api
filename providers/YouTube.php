@@ -28,7 +28,7 @@ class YouTube
     protected $googleYoutubeVideoRecordingDetails;
     protected $googleLiveBroadcastContentDetails;
 
-    public function init($params){
+    public function __construct($params){
     	$this->app_name = $params['app_name'] ?: '';
     	$this->client_id = $params['client_id'] ?: '';
     	$this->client_secret = $params['client_secret'] ?: '';
