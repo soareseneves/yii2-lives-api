@@ -32,15 +32,15 @@ class FacebookAuthService
 	public function getToken($code)
 	{
 			try {
-				$accessToken = $helper->getAccessToken();
+				$accessToken = $this->helper->getAccessToken();
 
 				if (! isset($accessToken)) {
 				  if ($helper->getError()) {
 				    header('HTTP/1.0 401 Unauthorized');
-				    echo "Error: " . $helper->getError() . "\n";
-				    echo "Error Code: " . $helper->getErrorCode() . "\n";
-				    echo "Error Reason: " . $helper->getErrorReason() . "\n";
-				    echo "Error Description: " . $helper->getErrorDescription() . "\n";
+				    echo "Error: " . $this->helper->getError() . "\n";
+				    echo "Error Code: " . $this->helper->getErrorCode() . "\n";
+				    echo "Error Reason: " . $this->helper->getErrorReason() . "\n";
+				    echo "Error Description: " . $this->helper->getErrorDescription() . "\n";
 				  } else {
 				  	header('HTTP/1.0 400 Bad Request');
 				    echo 'Bad request';
