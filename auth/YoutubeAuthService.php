@@ -17,10 +17,10 @@ class YoutubeAuthService
 		$this->module = \Yii::$app->getModule('livesapi');
 		$this->googleClient = new \Google_Client;
 
-		$this->googleClient->setClientId($this->module->youtube->client_id);
-        $this->googleClient->setClientSecret($this->module->youtube->client_secret);
-        $this->googleClient->setDeveloperKey($this->module->youtube->api_key);
-        $this->googleClient->setRedirectUri($this->module->youtube->redirect_url);
+		$this->googleClient->setClientId($this->module->providers->youtube->client_id);
+        $this->googleClient->setClientSecret($this->module->providers->youtube->client_secret);
+        $this->googleClient->setDeveloperKey($this->module->providers->youtube->api_key);
+        $this->googleClient->setRedirectUri($this->module->providers->youtube->redirect_url);
 
 		$this->googleClient->setScopes([
 		                             'https://www.googleapis.com/auth/youtube.readonly',
