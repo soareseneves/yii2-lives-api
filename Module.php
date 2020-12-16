@@ -11,7 +11,7 @@ use soareseneves\livesapi\providers\YouTube;
 class Module extends \yii\base\Module
 {
 
-    private $providers;
+    public $providers;
     public $youtube;
 
     public function init(){
