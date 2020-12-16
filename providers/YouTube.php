@@ -29,12 +29,12 @@ class YouTube
     protected $googleLiveBroadcastContentDetails;
 
     public function init($params){
-    	$this->app_name = $params->app_name;
-    	$this->client_id = $params->client_id;
-    	$this->client_secret = $params->client_secret;
-    	$this->api_key = $params->api_key;
-    	$this->redirect_url = $params->redirect_url;
-    	$this->yt_language = $params->yt_language;
+    	$this->app_name = $params['app_name'];
+    	$this->client_id = $params['client_id'];
+    	$this->client_secret = $params['client_secret'];
+    	$this->api_key = $params['api_key'];
+    	$this->redirect_url = $params['redirect_url'];
+    	$this->yt_language = $params['yt_language'];
 
         $this->googleClient = new \Google_Client;
         $this->googleClient->setClientId($this->client_id);

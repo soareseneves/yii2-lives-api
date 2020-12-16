@@ -18,7 +18,7 @@ class Module extends \yii\base\Module
         parent::init();
 
         if (isset($this->providers->youtube)){
-            $this->youtube = new YouTube($this->providers->youtube);
+            $this->youtube = new YouTube($this->providers['youtube']);
         }
     }
 
