@@ -33,12 +33,6 @@ class FacebookProvider
         ]);
     }
 
-    /**
-     * [broadcast creating the event on youtube]
-     * @param  [type] $token [auth token for youtube channel]
-     * @param  [type] $data  [array of the event details]
-     * @return [type]        [response array of broadcast ]
-     */
     public function broadcast($token, $data = null)
     {
         try{
@@ -50,7 +44,7 @@ class FacebookProvider
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array ('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
            
             $graphNode = $response->getGraphNode();
 
@@ -67,36 +61,48 @@ class FacebookProvider
 
     }
 
-    /**
-     * [updateBroadcast update the already created event on youtunbe channel]
-     * @param  [type] $token            [channel auth token]
-     * @param  [type] $data             [event details]
-     * @param  [type] $youtube_event_id [eventID]
-     * @return [type]                   [response array for various process in the update]
-     */
-    public function updateBroadcast($token, $data, $youtube_event_id)
+    public function updateBroadcast($token, $data, $facebook_event_id)
     {
-        try{                
-            //
-        } catch(\Exception $e) {
+        try{
+            $title = $data['title'];
+            $description = $data['description'];
+            $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["planned_start_time"], $data["time_zone"]);
+            $startdt = ($startdt < Carbon::now($data["time_zone"])) ? Carbon::now($data["time_zone"]) : $startdt;
+            $startdt = $startdt->timestamp;
 
+            // Returns a `FacebookFacebookResponse` object
+            $response = $this->facebookClient->post('/' . $facebook_event_id, array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+          
+            $graphNode = $response->getGraphNode();
+
+            return $graphNode;
+        } catch(FacebookExceptionsFacebookResponseException $e) {
+            Yii::info('Graph returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(FacebookExceptionsFacebookSDKException $e) {
+            Yii::info('Facebook SDK returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(\Exception $e) {
             throw new ServerErrorHttpException($e->getMessage(), 1);
         }
-
     }
 
-    /** 
-     * [deleteEvent delete an event created in youtube]
-     * @param  [type] $token            [auth token for channel]
-     * @param  [type] $youtube_event_id [eventID]
-     * @return [type]                   [deleteBroadcastsResponse]
-     */
-    public function deleteEvent($token, $youtube_event_id)
+    public function deleteEvent($token, $facebook_event_id)
     {
-        try {
-             //              
-        } catch(\Exception $e) {
+        try{
+            // Returns a `FacebookFacebookResponse` object
+            $response = $this->facebookClient->delete('/' . $facebook_event_id, array(), $token['access_token']);
+          
+            $graphNode = $response->getGraphNode();
 
+            return $graphNode;
+        } catch(FacebookExceptionsFacebookResponseException $e) {
+            Yii::info('Graph returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(FacebookExceptionsFacebookSDKException $e) {
+            Yii::info('Facebook SDK returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(\Exception $e) {
             throw new ServerErrorHttpException($e->getMessage(), 1);
         }
     }
