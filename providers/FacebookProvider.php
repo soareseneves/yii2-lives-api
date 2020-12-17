@@ -42,9 +42,24 @@ class FacebookProvider
     public function broadcast($token, $data = null)
     {
         try{
-            //
-        } catch(\Exception $e) {
 
+            $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["planned_start_time"], $data["time_zone"]);
+            $startdt = ($startdt < Carbon::now($data["time_zone"])) ? Carbon::now($data["time_zone"]) : $startdt;
+            $startdt = $startdt->timestamp;
+
+            // Returns a `FacebookFacebookResponse` object
+            $response = $this->facebookClient->post('/{page-id}/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt            ), $token);
+            
+            $graphNode = $response->getGraphNode();
+
+            return $graphNode;
+        } catch(FacebookExceptionsFacebookResponseException $e) {
+            Yii::info('Graph returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(FacebookExceptionsFacebookSDKException $e) {
+            Yii::info('Facebook SDK returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(\Exception $e) {
             throw new ServerErrorHttpException($e->getMessage(), 1);
         }
 
