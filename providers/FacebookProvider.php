@@ -48,7 +48,7 @@ class FacebookProvider
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/{page-id}/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt            ), $token);
+            $response = $this->facebookClient->post('/{page-id}/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token);
             
             $graphNode = $response->getGraphNode();
 
