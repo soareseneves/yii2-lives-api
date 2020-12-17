@@ -87,6 +87,25 @@ class FacebookProvider
         }
     }
 
+    public function endBroadcast($token, $facebook_event_id){
+        try{
+            // Returns a `FacebookFacebookResponse` object
+            $response = $this->facebookClient->post('/' . $facebook_event_id, array('end_live_video' => 'true'), $token['access_token']);
+          
+            $graphNode = $response->getGraphNode();
+
+            return $graphNode;
+        } catch(FacebookExceptionsFacebookResponseException $e) {
+            Yii::info('Graph returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(FacebookExceptionsFacebookSDKException $e) {
+            Yii::info('Facebook SDK returned an error: ' . $e->getMessage());
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        } catch(\Exception $e) {
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        }
+    }
+
     public function deleteEvent($token, $facebook_event_id)
     {
         try{
