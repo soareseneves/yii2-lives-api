@@ -11,7 +11,7 @@ use Facebook\Facebook;
 class FacebookProvider
 {
 
-	public $app_id;
+    public $app_id;
     public $app_secret;
     public $api_version;
     public $redirect_url;
@@ -20,11 +20,11 @@ class FacebookProvider
     protected $facebookClient;
 
     public function __construct($params){
-    	$this->app_id = $params['app_id'] ?: '';
-    	$this->app_secret = $params['app_secret'] ?: '';
-    	$this->api_version = $params['api_version'] ?: '';
-    	$this->redirect_url = $params['redirect_url'] ?: '';
-    	$this->fb_language = $params['fb_language'] ?: 'pt_BR';
+        $this->app_id = $params['app_id'] ?: '';
+        $this->app_secret = $params['app_secret'] ?: '';
+        $this->api_version = $params['api_version'] ?: '';
+        $this->redirect_url = $params['redirect_url'] ?: '';
+        $this->fb_language = $params['fb_language'] ?: 'pt_BR';
 
         $this->facebookClient = new Facebook([
             'app_id' => $this->app_id,
@@ -48,8 +48,8 @@ class FacebookProvider
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/100002473105778/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token);
-            
+            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+           
             $graphNode = $response->getGraphNode();
 
             return $graphNode;

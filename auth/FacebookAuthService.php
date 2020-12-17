@@ -79,7 +79,22 @@ class FacebookAuthService
 				  //var_dump($accessToken->getValue());
 				}
 
-				return (string)$accessToken;
+				try {
+				  // Returns a `FacebookFacebookResponse` object
+				  $response = $this->facebookClient->get(
+				    '/me',
+				    $accessToken
+				  );
+				} catch(FacebookExceptionsFacebookResponseException $e) {
+					echo 'Graph returned an error: ' . $e->getMessage();
+				  	exit;
+				} catch(FacebookExceptionsFacebookSDKException $e) {
+					echo 'Facebook SDK returned an error: ' . $e->getMessage();
+					exit;
+				}
+				$graphNode = $response->getGraphNode();
+
+				return serialize(['user' => ['id' => $graphNode['id'], 'name' => $graphNode['name']], 'access_token' => (string)$accessToken]);
 			} catch(Facebook\Exception\ResponseException $e) {
 			  	// When Graph returns an error
 			  	Yii::info('--------- FACEBOOK EXCEPTION ------------');
