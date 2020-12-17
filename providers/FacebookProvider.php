@@ -43,12 +43,14 @@ class FacebookProvider
     {
         try{
 
+            $title = $data['title'];
+            $description = $data['description'];
             $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["planned_start_time"], $data["time_zone"]);
             $startdt = ($startdt < Carbon::now($data["time_zone"])) ? Carbon::now($data["time_zone"]) : $startdt;
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array ('status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array ('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
            
             $graphNode = $response->getGraphNode();
 
