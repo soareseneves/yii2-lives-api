@@ -111,7 +111,7 @@ class YouTubeProvider
             /** 
              * [setAccessToken [setting accent token to client]]
              */                 
-            $setAccessToken = self::setAccessToken($token);
+            $setAccessToken = self::setAccessToken($token['access_token']);
             if(!$setAccessToken)
                 return false;   
 
@@ -396,7 +396,7 @@ class YouTubeProvider
     {
         try{
 
-            if( empty($token) ){
+            if( empty($token['access_token']) ){
                 Yii::info("token can't be empty");
                 return false;
             }
@@ -404,7 +404,7 @@ class YouTubeProvider
             /** 
              * [setAccessToken [setting accent token to client]]
              */                 
-            $setAccessToken = self::setAccessToken($token);         
+            $setAccessToken = self::setAccessToken($token['access_token']);         
             if(!$setAccessToken)
                 return false;   
 
@@ -441,7 +441,7 @@ class YouTubeProvider
             /** 
              * [setAccessToken [setting accent token to client]]
              */                 
-            $setAccessToken = self::setAccessToken($token);
+            $setAccessToken = self::setAccessToken($token['access_token']);
             if(!$setAccessToken)
                 return false;   
             /** 
@@ -622,7 +622,7 @@ class YouTubeProvider
             /** 
              * [setAccessToken [setting accent token to client]]
              */                 
-            $setAccessToken = self::setAccessToken($token);
+            $setAccessToken = self::setAccessToken($token['access_token']);
             if(!$setAccessToken)
                 return false;   
             /** 
@@ -654,7 +654,7 @@ class YouTubeProvider
             /** 
              * [setAccessToken [setting accent token to client]]
              */                 
-            $setAccessToken = self::setAccessToken($token);
+            $setAccessToken = self::setAccessToken($token['access_token']);
             if(!$setAccessToken)
                 return false;   
             /** 
