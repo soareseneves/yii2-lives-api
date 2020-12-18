@@ -37,6 +37,14 @@ class FacebookProvider
     {
         try{
 
+            if (isset($token['page'])){
+                $id = $token['page']['id'];
+                $access_token = $token['page']['access_token'];
+            } else {
+                $id = $token['user']['id'];
+                $access_token = $token['access_token'];
+            }
+
             $title = $data['title'];
             $description = $data['description'];
             $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["planned_start_time"], $data["time_zone"]);
@@ -44,7 +52,7 @@ class FacebookProvider
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/' . $token['user']['id'] . '/live_videos', array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+            $response = $this->facebookClient->post('/' . $id . '/live_videos', array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $access_token);
            
             $graphNode = $response->getGraphNode();
 
@@ -64,6 +72,12 @@ class FacebookProvider
     public function updateBroadcast($token, $data, $facebook_event_id)
     {
         try{
+            if (isset($token['page'])){
+                $access_token = $token['page']['access_token'];
+            } else {
+                $access_token = $token['access_token'];
+            }
+
             $title = $data['title'];
             $description = $data['description'];
             $startdt = Carbon::createFromFormat('Y-m-d H:i:s', $data["planned_start_time"], $data["time_zone"]);
@@ -71,7 +85,7 @@ class FacebookProvider
             $startdt = $startdt->timestamp;
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->post('/' . $facebook_event_id, array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $token['access_token']);
+            $response = $this->facebookClient->post('/' . $facebook_event_id, array('enable_backup_ingest' => 'true', 'title' => $title, 'description' => $description, 'status' => 'SCHEDULED_UNPUBLISHED', 'planned_start_time' => $startdt), $access_token);
           
             $graphNode = $response->getGraphNode();
 
@@ -90,8 +104,13 @@ class FacebookProvider
     public function deleteEvent($token, $facebook_event_id)
     {
         try{
+            if (isset($token['page'])){
+                $access_token = $token['page']['access_token'];
+            } else {
+                $access_token = $token['access_token'];
+            }
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->delete('/' . $facebook_event_id, array(), $token['access_token']);
+            $response = $this->facebookClient->delete('/' . $facebook_event_id, array(), $access_token);
           
             $graphNode = $response->getGraphNode();
 
