@@ -94,7 +94,7 @@ class FacebookAuthService
 				}
 				$graphNode = $response->getGraphNode();
 
-				return serialize(['user' => ['id' => $graphNode['id'], 'name' => $graphNode['name']], 'access_token' => (string)$accessToken]);
+				return ['user' => ['id' => $graphNode['id'], 'name' => $graphNode['name']], 'access_token' => (string)$accessToken];
 			} catch(Facebook\Exception\ResponseException $e) {
 			  	// When Graph returns an error
 			  	Yii::info('--------- FACEBOOK EXCEPTION ------------');
