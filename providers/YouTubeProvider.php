@@ -662,8 +662,10 @@ class YouTubeProvider
              * @var [type]
              */         
             $youtube = new \Google_Service_YouTube($this->googleClient);
+
+            $channels = $youtube->channels->listChannels('id,snippet', array('mine' => 'true'));
             
-            return $youtube;                
+            return $channels;                
         } catch ( \Google_Service_Exception $e ) {
 
             throw new ServerErrorHttpException($e->getMessage(), 1);
