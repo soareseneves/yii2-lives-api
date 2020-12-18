@@ -648,6 +648,36 @@ class YouTubeProvider
         }
     }
 
+    public function getConnectionName()
+    {
+        try {
+            /** 
+             * [setAccessToken [setting accent token to client]]
+             */                 
+            $setAccessToken = self::setAccessToken($token);
+            if(!$setAccessToken)
+                return false;   
+            /** 
+             * [$service [instance of Google_Service_YouTube ]]
+             * @var [type]
+             */         
+            $youtube = new \Google_Service_YouTube($this->googleClient);
+            
+            return $youtube;                
+        } catch ( \Google_Service_Exception $e ) {
+
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+
+        } catch ( \Google_Exception $e ) {
+
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        
+        } catch(\Exception $e) {
+
+            throw new ServerErrorHttpException($e->getMessage(), 1);
+        }
+    }
+
 }
 
 
