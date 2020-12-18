@@ -648,7 +648,7 @@ class YouTubeProvider
         }
     }
 
-    public function getConnectionName($token)
+    public function getChannels($token)
     {
         try {
             /** 
