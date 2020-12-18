@@ -112,9 +112,9 @@ class FacebookProvider
         try{
 
             // Returns a `FacebookFacebookResponse` object
-            $response = $this->facebookClient->get('/' . $token['user']['id'] . '/accounts', array('fields' => 'id,name,access_token'), $token['access_token']);
-           
-            $graphNode = $response->getGraphNode();
+            $response = $this->facebookClient->get('/' . $token['user']['id'] . '/accounts', $token['access_token']);
+         
+            $graphNode = $response->getGraphEdge();
 
             return $graphNode;
         } catch(FacebookExceptionsFacebookResponseException $e) {
