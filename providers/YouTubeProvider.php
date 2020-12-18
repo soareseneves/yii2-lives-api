@@ -648,7 +648,7 @@ class YouTubeProvider
         }
     }
 
-    public function getConnectionName()
+    public function getConnectionName($token)
     {
         try {
             /** 
